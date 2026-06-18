@@ -26,6 +26,8 @@ export const FIRST_NAME_MIN_ERROR_MESSAGE: string = "First name must be at least
 export const LAST_NAME_MIN_ERROR_MESSAGE: string = "Last name must be at least 3 characters";
 export const FIRST_NAME_MAX_ERROR_MESSAGE: string = "First name must be less than 50 characters";
 export const LAST_NAME_MAX_ERROR_MESSAGE: string = "Last name must be less than 50 characters";
+export const LOGIN_SUCCESSFULL_MESSAGE: string = "Login Successfull";
+export const USER_NOT_FOUND: string = "User not found";
 
 //regex
 export const EMAIL_VALIDATION_REGEX: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -34,3 +36,6 @@ export const PHONE_NO_VALIDATION_REGEX: RegExp = /^[6-9]\d{9}$/;
 
 //Status Code
 export const SUCCESS_STATUS_CODE: number = 201;
+
+//Password Salt Rounds
+export const PASSWORD_SALT_ROUNDS: number = 10;

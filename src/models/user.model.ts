@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema<User>(
             required: true,
             trim: true,
             minLength: 6,
-            select: false,
+            // select: false,
             validate: {
                 validator: (value: string) => validator.isStrongPassword(value),
                 message: PASSWORD_VALIDATION_MESSAGE

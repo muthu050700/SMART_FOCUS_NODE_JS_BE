@@ -53,7 +53,7 @@ registry.registerPath({
 //Create user
 registry.registerPath({
     method: "post",
-    path: "/api/v1/users",
+    path: "/api/v1/register",
     tags: ["User"],
     request: {
         body: {
