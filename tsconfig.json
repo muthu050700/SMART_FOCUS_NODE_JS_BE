@@ -39,6 +39,7 @@
     "skipLibCheck": true,
   },
   "include": [
-    "src"
+    "src/**/*",
+    "index.d.ts"
   ]
 }

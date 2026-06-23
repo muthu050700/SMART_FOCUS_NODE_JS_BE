@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import { EMAIL_VALIDATION_MESSAGE, PASSWORD_VALIDATION_MESSAGE, USER_DATA_BODY_VALIDATION_MESSAGE, USER_NOT_FOUND } from "../utils/constant.js";
-import { generateJWTToken, isEmailIdValid, isPasswordMatchFn, isPasswordValidCheck, isReqBodyExitsFn, isUserAlreadyLoggedIn } from "../utils/helperFunctions.js";
+import { generateJWTToken, isEmailIdValid, isPasswordMatchFn, isPasswordValidCheck, isReqBodyExitsFn, getUser } from "../utils/helperFunctions.js";
 import type { LoginValidation } from "../validations/login.validation.js";
 import { Types } from "mongoose";
 
@@ -26,7 +26,7 @@ const authUserLoginService = async (body: LoginValidation): Promise<string> => {
     if (isPasswordValid) throw new Error(PASSWORD_VALIDATION_MESSAGE);
 
     //checking user already exits or not
-    const user = await isUserAlreadyLoggedIn(email, User);
+    const user = await getUser(email, User);
     if (!user) throw new Error(USER_NOT_FOUND);
 
     //getting DB password

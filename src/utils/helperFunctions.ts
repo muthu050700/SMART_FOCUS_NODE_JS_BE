@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { EMAIL_VALIDATION_REGEX, PASSWORD_SALT_ROUNDS, PASSWORD_VALIDATION_REGEX } from "./constant.js";
+import { EMAIL_VALIDATION_REGEX, JWT_SECRET, PASSWORD_SALT_ROUNDS, PASSWORD_VALIDATION_REGEX } from "./constant.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 //     return !!user;
 // }
 
-export const isUserAlreadyLoggedIn = async <T>(email: string, model: Model<T>): Promise<T | null> => {
+export const getUser = async <T>(email: string, model: Model<T>): Promise<T | null> => {
     return await model.findOne({ email });
 }
 
@@ -37,6 +37,6 @@ export const isPasswordMatchFn = async (password: string, dbPassword: string) =>
 }
 
 export const generateJWTToken = (id: string, role: string): string => {
-    const token = jwt.sign({ userId: id, role }, "Sathish@123", { expiresIn: "7d" });
+    const token = jwt.sign({ _id: id, role }, JWT_SECRET, { expiresIn: "7d" });
     return token;
 }

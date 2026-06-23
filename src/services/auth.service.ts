@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import { EMAIL_VALIDATION_MESSAGE, PASSWORD_VALIDATION_MESSAGE, USER_ALREADY_EXITS_VALIDATION_MESSAGE, USER_DATA_BODY_VALIDATION_MESSAGE } from "../utils/constant.js";
-import { isEmailIdValid, isPasswordValidCheck, isReqBodyExitsFn, isUserAlreadyLoggedIn, passwordHashFn } from "../utils/helperFunctions.js";
+import { isEmailIdValid, isPasswordValidCheck, isReqBodyExitsFn, getUser, passwordHashFn } from "../utils/helperFunctions.js";
 import type { CreateUserInput } from "../validations/user.validation.js";
 
 export const createUserService = async (body: CreateUserInput) => {
@@ -16,7 +16,7 @@ export const createUserService = async (body: CreateUserInput) => {
     if (isEmailIdInvalid) throw new Error(EMAIL_VALIDATION_MESSAGE);
 
     //checking user already exits or not
-    const userObj = await isUserAlreadyLoggedIn(email, User);
+    const userObj = await getUser(email, User);
     if (!!userObj) throw new Error(USER_ALREADY_EXITS_VALIDATION_MESSAGE);
 
     //Password validation

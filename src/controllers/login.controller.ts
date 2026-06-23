@@ -10,7 +10,8 @@ const login = async (req: Request, res: Response) => {
 
         const token = await authUserLoginService(body);
 
-        res.cookie("token", token, { expires: new Date(7 * 24 * 60 * 60 * 1000), httpOnly: true, sameSite: "strict" });
+        res.cookie("token", token, { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), httpOnly: true, sameSite: "strict" });
+
         res.json({ succes: true, message: LOGIN_SUCCESSFULL_MESSAGE });
     } catch (err) {
         if (err instanceof mongoose.Error.ValidationError) {
