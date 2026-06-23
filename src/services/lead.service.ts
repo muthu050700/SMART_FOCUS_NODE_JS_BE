@@ -1,6 +1,6 @@
 import { LeadModel } from "../models/lead.model.js";
 import { EMAIL_VALIDATION_MESSAGE, USER_ALREADY_EXITS_VALIDATION_MESSAGE, USER_DATA_BODY_VALIDATION_MESSAGE } from "../utils/constant.js";
-import { isEmailIdValid, isReqBodyExitsFn, isUserAlreadyLoggedIn } from "../utils/helperFunctions.js";
+import { isEmailIdValid, isReqBodyExitsFn, getUser } from "../utils/helperFunctions.js";
 import type { CreateLeadInput } from "../validations/lead.validation.js";
 
 const createLeadService = async (body: CreateLeadInput) => {
@@ -15,8 +15,8 @@ const createLeadService = async (body: CreateLeadInput) => {
     if (isEmailIdInvalid) throw new Error(EMAIL_VALIDATION_MESSAGE)
 
     // checking user already exits or not
-    const isUserExits: boolean = await isUserAlreadyLoggedIn(email, LeadModel);
-    if (isUserExits) throw new Error(USER_ALREADY_EXITS_VALIDATION_MESSAGE)
+    const userObj = await getUser(email, LeadModel);
+    if (!!userObj) throw new Error(USER_ALREADY_EXITS_VALIDATION_MESSAGE);
 
     const createLead = async (data: CreateLeadInput) => {
         return await LeadModel.create(data);

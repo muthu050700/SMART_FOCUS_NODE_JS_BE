@@ -1,5 +1,11 @@
-//PORT
-export const PORT = 7777;
+import dotenv from "dotenv";
+
+dotenv.config();
+
+//ENV
+export const MONGO_DB_URL = process.env.MONGO_DB_URL ?? "";
+export const PORT = process.env.PORT;
+export const JWT_SECRET = process.env.JWT_SECRET ?? "";
 
 export type USER_ROLE_TYPE = "admin" | "student" | "teacher" | "parent";
 export const USER_ROLES = ["admin", "teacher", "student", "parent"] as const;
@@ -9,6 +15,7 @@ export const LEAD_STATUS = ["NEW", "CONTACTED", "INTERESTED", "CONVERTED", "LOST
 export const DEFAULT_LEAD_STATUS = "NEW";
 export const LEAD_SOURCE = ["WEBSITE", "WHATSAPP", "INSTAGRAM", "WALK_IN"] as const;
 export const DEFAULT_LEAD_SOURCE = "WEBSITE";
+
 
 //validation messages
 export const EMAIL_VALIDATION_MESSAGE: string = "Invalid credentials";
@@ -26,6 +33,9 @@ export const FIRST_NAME_MIN_ERROR_MESSAGE: string = "First name must be at least
 export const LAST_NAME_MIN_ERROR_MESSAGE: string = "Last name must be at least 3 characters";
 export const FIRST_NAME_MAX_ERROR_MESSAGE: string = "First name must be less than 50 characters";
 export const LAST_NAME_MAX_ERROR_MESSAGE: string = "Last name must be less than 50 characters";
+export const LOGIN_SUCCESSFULL_MESSAGE: string = "Login Successfull";
+export const USER_NOT_FOUND: string = "User not found";
+export const TOKEN_VALIDATION_MESSAGE: string = "Please Login again!!!";
 
 //regex
 export const EMAIL_VALIDATION_REGEX: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -34,3 +44,6 @@ export const PHONE_NO_VALIDATION_REGEX: RegExp = /^[6-9]\d{9}$/;
 
 //Status Code
 export const SUCCESS_STATUS_CODE: number = 201;
+
+//Password Salt Rounds
+export const PASSWORD_SALT_ROUNDS: number = 10;

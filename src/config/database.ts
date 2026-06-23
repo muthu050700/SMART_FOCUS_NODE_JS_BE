@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import { MONGO_DB_URL } from "../utils/constant.js";
 
 const connectDB = async () => {
-    await mongoose.connect("mongodb+srv://muthu050:t2RRZICnusHjuayK@namasterdev.ys2cf7s.mongodb.net/smart_focus_tution_center_V2");
+    await mongoose.connect(MONGO_DB_URL);
 }
 
 export default connectDB;
