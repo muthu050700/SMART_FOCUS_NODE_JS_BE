@@ -7,8 +7,9 @@ import mongoose from "mongoose";
 export const createUser = async (req: Request, res: Response) => {
     try {
         const body: CreateUserInput = req.body;
+        const loggedUser: CreateUserInput = req.user;
 
-        const user = await createUserService(body);
+        const user = await createUserService(body, loggedUser);
 
         res.status(SUCCESS_STATUS_CODE).json({
             success: true,

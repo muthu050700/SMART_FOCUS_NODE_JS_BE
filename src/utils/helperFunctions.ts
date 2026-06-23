@@ -40,3 +40,7 @@ export const generateJWTToken = (id: string, role: string): string => {
     const token = jwt.sign({ _id: id, role }, JWT_SECRET, { expiresIn: "7d" });
     return token;
 }
+
+export const isAdminFn = (userRole: string): boolean => {
+    return userRole === "admin";
+}

@@ -1,15 +1,20 @@
 import User from "../models/user.model.js";
 import { EMAIL_VALIDATION_MESSAGE, PASSWORD_VALIDATION_MESSAGE, USER_ALREADY_EXITS_VALIDATION_MESSAGE, USER_DATA_BODY_VALIDATION_MESSAGE } from "../utils/constant.js";
-import { isEmailIdValid, isPasswordValidCheck, isReqBodyExitsFn, getUser, passwordHashFn } from "../utils/helperFunctions.js";
+import { isEmailIdValid, isPasswordValidCheck, isReqBodyExitsFn, getUser, passwordHashFn, isAdminFn } from "../utils/helperFunctions.js";
 import type { CreateUserInput } from "../validations/user.validation.js";
 
-export const createUserService = async (body: CreateUserInput) => {
+export const createUserService = async (body: CreateUserInput, loggedUser: CreateUserInput) => {
     //Validation wheather body exits or not
     const isReqBodyExits: boolean = isReqBodyExitsFn(body);
     if (isReqBodyExits) throw new Error(USER_DATA_BODY_VALIDATION_MESSAGE);
 
     //Getting Email and Password
     const { email, password } = body;
+    const { role } = loggedUser;
+
+    //Validating wheather user is Admin or not
+    const isAdmin: boolean = isAdminFn(role);
+    if (!isAdmin) throw new Error("Unauthorized");
 
     //Email validation 
     const isEmailIdInvalid: boolean = isEmailIdValid(email);
