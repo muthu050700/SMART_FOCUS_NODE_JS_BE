@@ -4,6 +4,6 @@ import userAuth from "../middleware/auth.js";
 
 const registerRouter = express.Router();
 
-registerRouter.post("/", createUser);
+registerRouter.post("/", userAuth, createUser);
 
 export default registerRouter;
