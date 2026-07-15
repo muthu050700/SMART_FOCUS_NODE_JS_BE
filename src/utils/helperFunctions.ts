@@ -1,12 +1,15 @@
-import { Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { EMAIL_VALIDATION_REGEX, JWT_SECRET, PASSWORD_SALT_ROUNDS, PASSWORD_VALIDATION_REGEX } from "./constant.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { LeadAssignmentModel } from "../models/leadAssignmentSettings.js";
 
 // export const isUserAlreadyLoggedIn = async <T>(email: string, model: Model<T>): Promise<boolean> => {
 //     const user = await model.findOne({ email });
 //     return !!user;
 // }
+
+interface Teacher { _id: mongoose.Types.ObjectId }
 
 export const getUser = async <T>(email: string, model: Model<T>): Promise<T | null> => {
     return await model.findOne({ email });
@@ -43,4 +46,19 @@ export const generateJWTToken = (id: string, role: string): string => {
 
 export const isAdminFn = (userRole: string): boolean => {
     return userRole === "admin";
+}
+
+
+
+export const assignCounsellor = async (teachersList: Teacher[], type: string, index: number): Promise<mongoose.Types.ObjectId> => {
+
+    const selectedTeacher = teachersList[index];
+    if (!selectedTeacher) throw new Error("Teacher Not Found.");
+    const id = { lastAssignedTeacher: selectedTeacher?._id }
+
+    if (type === "create") await LeadAssignmentModel.create(id);
+
+    if (type === "update") await LeadAssignmentModel.findOneAndUpdate({}, { lastAssignedTeacher: selectedTeacher?._id }, { new: true });
+
+    return selectedTeacher?._id;
 }

@@ -89,7 +89,8 @@ const leadSchema = new Schema<LeadUser>(
         ],
         assignedCounsellor: {
             type: Schema.Types.ObjectId,
-            ref: "User"
+            ref: "User",
+            default: null
         },
         followUpDate: Date,
         source: {
