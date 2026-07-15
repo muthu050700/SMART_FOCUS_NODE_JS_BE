@@ -18,13 +18,13 @@ const createLeadService = async (body: CreateLeadInput) => {
     const userObj = await getUser(email, LeadModel);
     if (!!userObj) throw new Error(USER_ALREADY_EXITS_VALIDATION_MESSAGE);
 
-    const createLead = async (data: CreateLeadInput) => {
-        return await LeadModel.create(data);
-    }
+    // const createLead = async (data: CreateLeadInput) => {
+    //     return await LeadModel.create(data);
+    // }
 
-    const lead = await createLead(body);
+    // const lead = await createLead(body);
 
-    return lead;
+    return body;
 }
 
 export default createLeadService;
