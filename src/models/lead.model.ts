@@ -18,9 +18,12 @@ export interface LeadUser extends Document {
     otpVerified?: boolean,
     status: LEAD_USER_STATUS,
     notes?: Array<leadNotes>,
-    assignedCounsellor?: Types.ObjectId,
+    assignedCounsellor?: Types.ObjectId | undefined,
     followUpDate?: Date,
-    source?: LeadSource
+    source?: LeadSource,
+    otp: string | null,
+    otpExpiresAt: Date | null,
+    otpAttempts: number
 }
 
 const leadSchema = new Schema<LeadUser>(
@@ -71,6 +74,18 @@ const leadSchema = new Schema<LeadUser>(
         otpVerified: {
             type: Boolean,
             default: false
+        },
+        otp: {
+            type: String,
+            default: null
+        },
+        otpExpiresAt: {
+            type: Date,
+            default: null
+        },
+        otpAttempts: {
+            type: Number,
+            default: 0
         },
         status: {
             type: String,

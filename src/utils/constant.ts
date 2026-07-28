@@ -36,6 +36,15 @@ export const LAST_NAME_MAX_ERROR_MESSAGE: string = "Last name must be less than 
 export const LOGIN_SUCCESSFULL_MESSAGE: string = "Login Successfull";
 export const USER_NOT_FOUND: string = "User not found";
 export const TOKEN_VALIDATION_MESSAGE: string = "Please Login again!!!";
+export const OTP_VALIDATION_SUBJECT_FOR_EMAIL: string = "Verify Your Email Address – Smart Focus Tuition Center";
+export const OTP_VALIDATION_FORMAT: string = "gmail";
+export const TUTION_CENTER_NAME: string = "Smart Focus Tuition Center";
+export const OTP_GENERARED_SUCCESS_MESSAGE: string = "OTP Generated Successfully";
+export const LEAD_ID_IS_REQUIRED_MESSAGE: String = "Lead ID is required";
+export const OTP_EXPIRED_MESSAGE: string = "OTP is Expired.";
+export const OTP_ATTMENT_EXCEED_MESSAGE: string = "Maximum OTP attempts exceeded. Please request a new OTP.";
+export const OTP_NOT_VALID_MESSAGE: string = "OTP is Not valided";
+export const OTP_SUCCESS_MESSAGE: string = "OTP Successfully Verified!";
 
 //regex
 export const EMAIL_VALIDATION_REGEX: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -47,3 +56,9 @@ export const SUCCESS_STATUS_CODE: number = 201;
 
 //Password Salt Rounds
 export const PASSWORD_SALT_ROUNDS: number = 10;
+
+//OTP Salt Rounds
+export const OTP_SALT_ROUNDS: number = 10;
+
+//OTP Maximun attempt
+export const OTP_MAX_ATTEMPTS = 5;
