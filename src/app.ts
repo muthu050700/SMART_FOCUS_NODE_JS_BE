@@ -7,6 +7,8 @@ import registerRouter from "./routes/register.routes.js";
 import loginRoute from "./routes/login.routes.js";
 import cookieParser from "cookie-parser";
 import { PORT } from "./utils/constant.js";
+import verifyOtpRoute from "./routes/verifyOtp.routes.js";
+import reSendOtpRoute from "./routes/reSendOtp.route.js";
 
 const app = express();
 
@@ -17,7 +19,9 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(openApiDocument));
 
 app.use("/api/v1/leads", leadRouter);
 app.use("/api/v1/register", registerRouter);
-app.use("/api/v1/login", loginRoute)
+app.use("/api/v1/login", loginRoute);
+app.use("/api/v1/verify-otp", verifyOtpRoute);
+app.use("/api/v1/resend-otp", reSendOtpRoute);
 
 app.use("/", (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {

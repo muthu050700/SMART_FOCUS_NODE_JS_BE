@@ -3,6 +3,7 @@ import { EMAIL_VALIDATION_REGEX, JWT_SECRET, PASSWORD_SALT_ROUNDS, PASSWORD_VALI
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { LeadAssignmentModel } from "../models/leadAssignmentSettings.js";
+import crypto from "crypto";
 
 // export const isUserAlreadyLoggedIn = async <T>(email: string, model: Model<T>): Promise<boolean> => {
 //     const user = await model.findOne({ email });
@@ -48,8 +49,6 @@ export const isAdminFn = (userRole: string): boolean => {
     return userRole === "admin";
 }
 
-
-
 export const assignCounsellor = async (teachersList: Teacher[], type: string, index: number): Promise<mongoose.Types.ObjectId> => {
 
     const selectedTeacher = teachersList[index];
@@ -61,4 +60,18 @@ export const assignCounsellor = async (teachersList: Teacher[], type: string, in
     if (type === "update") await LeadAssignmentModel.findOneAndUpdate({}, { lastAssignedTeacher: selectedTeacher?._id }, { new: true });
 
     return selectedTeacher?._id;
+}
+
+export const generateOTP = (): number => {
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    return otp;
+}
+
+export const encryptOTP = (otp: number): string => {
+    const encryptOTP = crypto.createHash('sha256').update(otp.toString()).digest('hex');
+    return encryptOTP;
+}
+
+export const getFiveMinExpiryTime = (): Date => {
+    return new Date(Date.now() + 5 * 60 * 1000);
 }
