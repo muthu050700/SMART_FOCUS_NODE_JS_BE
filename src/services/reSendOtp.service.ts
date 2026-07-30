@@ -38,7 +38,8 @@ const reSendOtpService = async (body: ReSendOtpValidation) => {
     //saving the otp and expiry time for lead user
     await LeadModel.findByIdAndUpdate({ _id: leadId }, {
         otp: encryptedOTP,
-        otpExpiresAt: expiredAt
+        otpExpiresAt: expiredAt,
+        otpAttempts: 0
     });
 
     // Sending Email OTP to user
