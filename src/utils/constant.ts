@@ -45,6 +45,8 @@ export const OTP_EXPIRED_MESSAGE: string = "OTP is Expired.";
 export const OTP_ATTMENT_EXCEED_MESSAGE: string = "Maximum OTP attempts exceeded. Please request a new OTP.";
 export const OTP_NOT_VALID_MESSAGE: string = "OTP is Not valided";
 export const OTP_SUCCESS_MESSAGE: string = "OTP Successfully Verified!";
+export const RESEND_OTP_SUCCESS_MESSAGE: string = "OTP resent successfully.";
+export const OTP_ALREADY_VERIVIED_VALIDATION_MESSAGE: string = "Already a verified user.";
 
 //regex
 export const EMAIL_VALIDATION_REGEX: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
