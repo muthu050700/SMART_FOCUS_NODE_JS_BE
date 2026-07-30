@@ -23,7 +23,8 @@ export interface LeadUser extends Document {
     source?: LeadSource,
     otp: string | null,
     otpExpiresAt: Date | null,
-    otpAttempts: number
+    otpAttempts: number,
+    reSendOtpAttempts: number
 }
 
 const leadSchema = new Schema<LeadUser>(
@@ -84,6 +85,10 @@ const leadSchema = new Schema<LeadUser>(
             default: null
         },
         otpAttempts: {
+            type: Number,
+            default: 0
+        },
+        reSendOtpAttempts: {
             type: Number,
             default: 0
         },
