@@ -20,7 +20,7 @@ export const createLeadSchema = z.object({
     })).optional().default([]),
     assignedCounsellor: z.string()
         .regex(/^[0-9a-fA-F]{24}$/, "Invalid ObjectId").optional(),
-    followUpDate: z.coerce.date().optional().default(() => new Date()),
+    // followUpDate: z.coerce.date().optional().default(() => new Date()),
     source: z.enum(LEAD_SOURCE, { message: LEAD_SOURCE_VALIDATION_MESSAGE }).optional().default(DEFAULT_LEAD_SOURCE)
 });
 

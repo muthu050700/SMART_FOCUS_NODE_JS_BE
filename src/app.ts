@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import { PORT } from "./utils/constant.js";
 import verifyOtpRoute from "./routes/verifyOtp.routes.js";
 import reSendOtpRoute from "./routes/reSendOtp.route.js";
+import updateLeadStatusRoute from "./routes/updateLeadStatusRoute.routes.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/v1/register", registerRouter);
 app.use("/api/v1/login", loginRoute);
 app.use("/api/v1/verify-otp", verifyOtpRoute);
 app.use("/api/v1/resend-otp", reSendOtpRoute);
+app.use("/api/v1/leads", updateLeadStatusRoute);
 
 app.use("/", (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
