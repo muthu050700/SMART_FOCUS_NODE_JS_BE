@@ -8,14 +8,16 @@ export const PORT = process.env.PORT;
 export const JWT_SECRET = process.env.JWT_SECRET ?? "";
 
 export type USER_ROLE_TYPE = "admin" | "student" | "teacher" | "parent";
+export type LEAD_FOLLOW_UP_MODE = "CALL" | "EMAIL" | "WHATSAPP" | "MEETING";
 export const USER_ROLES = ["admin", "teacher", "student", "parent"] as const;
 export const ROLE_DEFAULT_VALUE = "student";
-export type LEAD_USER_STATUS = "NEW" | "CONTACTED" | "INTERESTED" | "CONVERTED" | "LOST";
+export type LEAD_USER_STATUS = typeof LEAD_STATUS[number];
 export const LEAD_STATUS = ["NEW", "CONTACTED", "INTERESTED", "CONVERTED", "LOST"] as const;
 export const DEFAULT_LEAD_STATUS = "NEW";
 export const LEAD_SOURCE = ["WEBSITE", "WHATSAPP", "INSTAGRAM", "WALK_IN"] as const;
 export const DEFAULT_LEAD_SOURCE = "WEBSITE";
-
+export const DEFAULT_LEAD_FOLLOW_UP = "CALL";
+export const FOLLOW_UP_MODES = ["CALL", "EMAIL", "WHATSAPP", "MEETING"];
 
 //validation messages
 export const EMAIL_VALIDATION_MESSAGE: string = "Invalid credentials";
@@ -46,7 +48,11 @@ export const OTP_ATTMENT_EXCEED_MESSAGE: string = "Maximum OTP attempts exceeded
 export const OTP_NOT_VALID_MESSAGE: string = "OTP is Not valided";
 export const OTP_SUCCESS_MESSAGE: string = "OTP Successfully Verified!";
 export const RESEND_OTP_SUCCESS_MESSAGE: string = "OTP resent successfully.";
+export const LEAD_STATUS_UPDATED_SUCCESS_MESSAGE: string = "Status updated successfully.";
 export const OTP_ALREADY_VERIVIED_VALIDATION_MESSAGE: string = "Already a verified user.";
+export const LEAD_ID_REQUIRED_MESSAGE = "Lead ID is required.";
+export const STATUS_REQUIRED_MESSAGE = "Status is required.";
+export const REMART_REQUIRED_MESSAGE = "Remark is required.";
 
 //regex
 export const EMAIL_VALIDATION_REGEX: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
