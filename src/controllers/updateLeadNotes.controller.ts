@@ -1,15 +1,23 @@
 import mongoose from "mongoose";
 import type { Request, Response } from "express";
-import { INTERNAL_ERROR_MESSAGE } from "../utils/constant.js";
+import { INTERNAL_ERROR_MESSAGE, LEAD_NOTES_SUCCESS_MESSAGE } from "../utils/constant.js";
+import updateLeadNotesService from "../services/updateLeadNotes.service.js";
+import type { UpdateLeadNotesValidation } from "../validations/updateLeadNotes.validation.js";
 
 const updateLeadNotesController = (req: Request, res: Response) => {
     try {
-        const body = req.body;
+        const body: UpdateLeadNotesValidation = req.body;
+        const leadId = req?.params?.id as string;
+
+        // Get loggedIn user Id
+        const loggedUserId = req?.user?._id;
+
+        updateLeadNotesService(body, leadId, loggedUserId);
 
         res.send({
             success: true,
-            message: "Successfully updated the Notes."
-        })
+            message: LEAD_NOTES_SUCCESS_MESSAGE
+        });
     } catch (err) {
         if (err instanceof mongoose.Error.ValidationError) {
             return res.status(400).json({

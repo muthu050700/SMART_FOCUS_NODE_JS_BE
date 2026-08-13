@@ -1,12 +1,12 @@
 import { LeadModel } from "../models/lead.model.js";
-import { LEAD_ID_REQUIRED_MESSAGE, REMART_REQUIRED_MESSAGE, STATUS_REQUIRED_MESSAGE, USER_NOT_FOUND, type LEAD_USER_STATUS } from "../utils/constant.js";
+import { INVALID_REQUEST, LEAD_ID_REQUIRED_MESSAGE, REMART_REQUIRED_MESSAGE, STATUS_REQUIRED_MESSAGE, USER_NOT_FOUND, type LEAD_USER_STATUS } from "../utils/constant.js";
 import type { LeadStatusValidation } from "../validations/updateLeadStatus.validation.js";
 
 
 const updateLeadStatusService = async (body: LeadStatusValidation, leadId: string) => {
     //Checking LeadId is there are not
 
-    if (!leadId) throw new Error(LEAD_ID_REQUIRED_MESSAGE);
+    if (!leadId) throw new Error(INVALID_REQUEST);
 
     const { status, remark } = body;
 

@@ -53,6 +53,9 @@ export const OTP_ALREADY_VERIVIED_VALIDATION_MESSAGE: string = "Already a verifi
 export const LEAD_ID_REQUIRED_MESSAGE = "Lead ID is required.";
 export const STATUS_REQUIRED_MESSAGE = "Status is required.";
 export const REMART_REQUIRED_MESSAGE = "Remark is required.";
+export const LEAD_NOTES_SUCCESS_MESSAGE = "Notes updated Successfully.";
+export const INVALID_REQUEST = "Invalid Request";
+export const MESSAGE_IS_REQUIRED = "Message is Required";
 
 //regex
 export const EMAIL_VALIDATION_REGEX: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
