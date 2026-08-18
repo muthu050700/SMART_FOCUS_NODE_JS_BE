@@ -1,23 +1,23 @@
 import mongoose from "mongoose";
 import type { Request, Response } from "express";
-import { INTERNAL_ERROR_MESSAGE, LEAD_NOTES_SUCCESS_MESSAGE } from "../utils/constant.js";
-import createLeadNotesService from "../services/createLeadNotes.service.js";
-import type { UpdateLeadNotesValidation } from "../validations/updateLeadNotes.validation.js";
+import { INTERNAL_ERROR_MESSAGE } from "../utils/constant.js";
+import createLeadFollowUpService from "../services/createLeadFollowUp.service.js";
+import type { LeadFollowUpValidation } from "../validations/createLeadFollowUps.validation.js";
 
-const updateLeadNotesController = (req: Request, res: Response) => {
+const createLeadFollowUps = (req: Request, res: Response) => {
     try {
-        const body: UpdateLeadNotesValidation = req.body;
+        const body: LeadFollowUpValidation = req.body;
         const leadId = req?.params?.id as string;
+        const userId = req?.user?._id;
 
-        // Get loggedIn user Id
-        const loggedUserId = req?.user?._id;
-
-        createLeadNotesService(body, leadId, loggedUserId);
+        createLeadFollowUpService(body, leadId, userId);
 
         res.send({
             success: true,
-            message: LEAD_NOTES_SUCCESS_MESSAGE
+            message: "Successfully updated the followup",
+            data: body
         });
+
     } catch (err) {
         if (err instanceof mongoose.Error.ValidationError) {
             return res.status(400).json({
@@ -40,4 +40,4 @@ const updateLeadNotesController = (req: Request, res: Response) => {
     }
 }
 
-export default updateLeadNotesController;
+export default createLeadFollowUps;

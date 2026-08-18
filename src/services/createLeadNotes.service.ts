@@ -2,7 +2,7 @@ import { LeadModel } from "../models/lead.model.js";
 import { INVALID_REQUEST, MESSAGE_IS_REQUIRED, USER_NOT_FOUND } from "../utils/constant.js";
 import type { UpdateLeadNotesValidation } from "../validations/updateLeadNotes.validation.js";
 
-const updateLeadNotesService = async (body: UpdateLeadNotesValidation, leadId: string, loggedUserId: string) => {
+const createLeadNotesService = async (body: UpdateLeadNotesValidation, leadId: string, loggedUserId: string) => {
     //Checking Lead Id is there or not
     if (!leadId) throw new Error(INVALID_REQUEST);
 
@@ -26,4 +26,4 @@ const updateLeadNotesService = async (body: UpdateLeadNotesValidation, leadId: s
     await leadUser.save();
 }
 
-export default updateLeadNotesService;
+export default createLeadNotesService;

@@ -75,3 +75,11 @@ export const encryptOTP = (otp: number): string => {
 export const getFiveMinExpiryTime = (): Date => {
     return new Date(Date.now() + 5 * 60 * 1000);
 }
+
+export const formatDate = (date: string): Date => {
+    const [day, month, year] = date.split("-").map(Number);
+
+    const parsedFollowUpDate = new Date(year as number, month as number - 1, day);
+
+    return parsedFollowUpDate;
+}

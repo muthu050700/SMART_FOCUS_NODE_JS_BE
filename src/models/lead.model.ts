@@ -10,10 +10,10 @@ interface leadNotes {
 
 interface leadFollowUp {
     followUpDate: Date,
-    mode: LEAD_FOLLOW_UP_MODE,
+    mode: string,
     remark: string,
     completed: boolean,
-    createdBy: Types.ObjectId,
+    createdBy: string,
     createdAt?: Date
 }
 
