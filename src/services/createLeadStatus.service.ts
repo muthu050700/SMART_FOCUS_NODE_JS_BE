@@ -3,7 +3,7 @@ import { INVALID_REQUEST, LEAD_ID_REQUIRED_MESSAGE, REMART_REQUIRED_MESSAGE, STA
 import type { LeadStatusValidation } from "../validations/updateLeadStatus.validation.js";
 
 
-const updateLeadStatusService = async (body: LeadStatusValidation, leadId: string) => {
+const createLeadStatusService = async (body: LeadStatusValidation, leadId: string) => {
     //Checking LeadId is there are not
 
     if (!leadId) throw new Error(INVALID_REQUEST);
@@ -28,4 +28,4 @@ const updateLeadStatusService = async (body: LeadStatusValidation, leadId: strin
     await leadUser.save();
 }
 
-export default updateLeadStatusService;
+export default createLeadStatusService;

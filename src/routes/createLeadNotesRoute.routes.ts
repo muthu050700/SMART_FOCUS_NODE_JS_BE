@@ -1,9 +1,9 @@
 import express from "express";
-import updateLeadNotesController from "../controllers/updateLeadNotes.controller.js";
+import createLeadNotesController from "../controllers/createLeadNotes.controller.js";
 import userAuth from "../middleware/auth.js";
 
-const updateLeadNotesRoute = express.Router();
+const createLeadNotesRoute = express.Router();
 
-updateLeadNotesRoute.post("/:id/notes", userAuth, updateLeadNotesController);
+createLeadNotesRoute.post("/:id/notes", userAuth, createLeadNotesController);
 
-export default updateLeadNotesRoute;    
+export default createLeadNotesRoute;    
