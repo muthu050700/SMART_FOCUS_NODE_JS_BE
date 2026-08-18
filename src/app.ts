@@ -9,7 +9,9 @@ import cookieParser from "cookie-parser";
 import { PORT } from "./utils/constant.js";
 import verifyOtpRoute from "./routes/verifyOtp.routes.js";
 import reSendOtpRoute from "./routes/reSendOtp.route.js";
-import updateLeadStatusRoute from "./routes/updateLeadStatusRoute.routes.js";
+import createLeadStatusRoute from "./routes/createLeadStatusRoute.routes.js";
+import createLeadNotesRoute from "./routes/createLeadNotesRoute.routes.js";
+import createLeadFollowUpRouter from "./routes/createLeadFollowUp.routes.js";
 
 const app = express();
 
@@ -23,7 +25,9 @@ app.use("/api/v1/register", registerRouter);
 app.use("/api/v1/login", loginRoute);
 app.use("/api/v1/verify-otp", verifyOtpRoute);
 app.use("/api/v1/resend-otp", reSendOtpRoute);
-app.use("/api/v1/leads", updateLeadStatusRoute);
+app.use("/api/v1/leads", createLeadStatusRoute);
+app.use("/api/v1/leads", createLeadNotesRoute);
+app.use("/api/v1/leads", createLeadFollowUpRouter)
 
 app.use("/", (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {

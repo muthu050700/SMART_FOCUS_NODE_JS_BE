@@ -1,15 +1,15 @@
 import type { Request, Response } from "express"
-import updateLeadStatusService from "../services/updateLeadStatus.service.js";
+import createLeadStatusService from "../services/createLeadStatus.service.js";
 import { INTERNAL_ERROR_MESSAGE, LEAD_STATUS_UPDATED_SUCCESS_MESSAGE, SUCCESS_STATUS_CODE } from "../utils/constant.js";
 import mongoose from "mongoose";
 import type { LeadStatusValidation } from "../validations/updateLeadStatus.validation.js";
 
-const updateLeadStatusController = async (req: Request, res: Response) => {
+const createLeadStatusController = async (req: Request, res: Response) => {
     try {
         const body: LeadStatusValidation = req.body;
         const leadId: string = req.params.id as string;
 
-        updateLeadStatusService(body, leadId);
+        createLeadStatusService(body, leadId);
 
         res.status(SUCCESS_STATUS_CODE).send({
             success: true,
@@ -37,4 +37,4 @@ const updateLeadStatusController = async (req: Request, res: Response) => {
     }
 }
 
-export default updateLeadStatusController;
+export default createLeadStatusController;

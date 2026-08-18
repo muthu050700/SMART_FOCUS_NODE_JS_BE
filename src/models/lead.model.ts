@@ -4,15 +4,16 @@ import { DEFAULT_LEAD_SOURCE, FOLLOW_UP_MODES, DEFAULT_LEAD_STATUS, EMAIL_VALIDA
 
 interface leadNotes {
     message: string,
-    creadtedAt?: Date
+    creadtedAt?: Date,
+    createdBy: string
 }
 
 interface leadFollowUp {
     followUpDate: Date,
-    mode: LEAD_FOLLOW_UP_MODE,
+    mode: string,
     remark: string,
     completed: boolean,
-    createdBy: Types.ObjectId,
+    createdBy: string,
     createdAt?: Date
 }
 
