@@ -12,6 +12,7 @@ import reSendOtpRoute from "./routes/reSendOtp.route.js";
 import createLeadStatusRoute from "./routes/createLeadStatusRoute.routes.js";
 import createLeadNotesRoute from "./routes/createLeadNotesRoute.routes.js";
 import createLeadFollowUpRouter from "./routes/createLeadFollowUp.routes.js";
+import editLeadFollowUpRoute from "./routes/editLeadFollowUp.routes.js";
 
 const app = express();
 
@@ -27,7 +28,8 @@ app.use("/api/v1/verify-otp", verifyOtpRoute);
 app.use("/api/v1/resend-otp", reSendOtpRoute);
 app.use("/api/v1/leads", createLeadStatusRoute);
 app.use("/api/v1/leads", createLeadNotesRoute);
-app.use("/api/v1/leads", createLeadFollowUpRouter)
+app.use("/api/v1/leads", createLeadFollowUpRouter);
+app.use("/api/v1/follow-ups", editLeadFollowUpRoute);
 
 app.use("/", (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
