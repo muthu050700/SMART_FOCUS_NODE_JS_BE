@@ -9,7 +9,7 @@ const createLeadStatusController = async (req: Request, res: Response) => {
         const body: LeadStatusValidation = req.body;
         const leadId: string = req.params.id as string;
 
-        createLeadStatusService(body, leadId);
+        await createLeadStatusService(body, leadId);
 
         res.status(SUCCESS_STATUS_CODE).send({
             success: true,

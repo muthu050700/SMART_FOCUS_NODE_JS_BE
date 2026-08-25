@@ -4,13 +4,13 @@ import { INTERNAL_ERROR_MESSAGE, SAVE_SUCCESS_MESSAGE } from "../utils/constant.
 import createLeadFollowUpService from "../services/createLeadFollowUp.service.js";
 import type { LeadFollowUpValidation } from "../validations/createLeadFollowUps.validation.js";
 
-const createLeadFollowUps = (req: Request, res: Response) => {
+const createLeadFollowUps = async (req: Request, res: Response) => {
     try {
         const body: LeadFollowUpValidation = req.body;
         const leadId = req?.params?.id as string;
         const userId = req?.user?._id;
 
-        createLeadFollowUpService(body, leadId, userId);
+        await createLeadFollowUpService(body, leadId, userId);
 
         res.send({
             success: true,

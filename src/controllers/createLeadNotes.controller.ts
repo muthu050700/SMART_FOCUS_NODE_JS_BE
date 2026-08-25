@@ -4,7 +4,7 @@ import { INTERNAL_ERROR_MESSAGE, LEAD_NOTES_SUCCESS_MESSAGE } from "../utils/con
 import createLeadNotesService from "../services/createLeadNotes.service.js";
 import type { UpdateLeadNotesValidation } from "../validations/updateLeadNotes.validation.js";
 
-const createLeadNotesController = (req: Request, res: Response) => {
+const createLeadNotesController = async (req: Request, res: Response) => {
     try {
         const body: UpdateLeadNotesValidation = req.body;
         const leadId = req?.params?.id as string;
@@ -12,7 +12,7 @@ const createLeadNotesController = (req: Request, res: Response) => {
         // Get loggedIn user Id
         const loggedUserId = req?.user?._id;
 
-        createLeadNotesService(body, leadId, loggedUserId);
+        await createLeadNotesService(body, leadId, loggedUserId);
 
         res.send({
             success: true,

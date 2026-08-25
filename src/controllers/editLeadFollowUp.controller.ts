@@ -4,7 +4,7 @@ import editLeadFollowUpService from "../services/editLeadFollowUp.service.js";
 import type { EditFollowUpValidation } from "../validations/editLeadFollowUp.validation.js";
 import mongoose from "mongoose";
 
-const editLeadFollowUpController = (req: Request, res: Response) => {
+const editLeadFollowUpController = async (req: Request, res: Response) => {
     try {
         const body: EditFollowUpValidation = req?.body;
 
@@ -12,7 +12,7 @@ const editLeadFollowUpController = (req: Request, res: Response) => {
         const leadId = req?.params?.leadId as string;
         const userId = req?.user?._id;
 
-        editLeadFollowUpService(body, leadId, followUpId, userId);
+        await editLeadFollowUpService(body, leadId, followUpId, userId);
 
         res.send({
             success: true,

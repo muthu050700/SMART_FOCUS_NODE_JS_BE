@@ -12,12 +12,20 @@ export type LEAD_FOLLOW_UP_MODE = "CALL" | "EMAIL" | "WHATSAPP" | "MEETING";
 export const USER_ROLES = ["admin", "teacher", "student", "parent"] as const;
 export const ROLE_DEFAULT_VALUE = "student";
 export type LEAD_USER_STATUS = typeof LEAD_STATUS[number];
-export const LEAD_STATUS = ["NEW", "CONTACTED", "INTERESTED", "CONVERTED", "LOST"] as const;
+export const LEAD_STATUS = ["NEW", "CONTACTED", "INTERESTED", "ADMISSION_PROCESS", "CONVERTED", "LOST"] as const;
 export const DEFAULT_LEAD_STATUS = "NEW";
 export const LEAD_SOURCE = ["WEBSITE", "WHATSAPP", "INSTAGRAM", "WALK_IN"] as const;
 export const DEFAULT_LEAD_SOURCE = "WEBSITE";
 export const DEFAULT_LEAD_FOLLOW_UP = "CALL";
 export const FOLLOW_UP_MODES = ["CALL", "EMAIL", "WHATSAPP", "MEETING"];
+export const LEAD_STATUS_ALLOWED_TRANSACTIONS: Record<string, string[]> = {
+    NEW: ["CONTACTED", "LOST"],
+    CONTACTED: ["INTERESTED", "LOST"],
+    INTERESTED: ["ADMISSION_PROCESS", "LOST"],
+    ADMISSION_PROCESS: ["CONVERTED", "LOST"],
+    CONVERTED: [],
+    LOST: []
+}
 
 //validation messages
 export const EMAIL_VALIDATION_MESSAGE: string = "Invalid credentials";
