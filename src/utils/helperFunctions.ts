@@ -79,7 +79,9 @@ export const getFiveMinExpiryTime = (): Date => {
 export const formatDate = (date: string): Date => {
     const [day, month, year] = date.split("-").map(Number);
 
-    const parsedFollowUpDate = new Date(year as number, month as number - 1, day);
+    // const parsedFollowUpDate = new Date(year as number, month as number - 1, day);
 
-    return parsedFollowUpDate;
+    // return parsedFollowUpDate;
+
+    return new Date(Date.UTC(year as number, month as number - 1, day));
 }
